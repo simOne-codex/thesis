@@ -7,11 +7,20 @@ import shutil
 import geopandas as gpd
 import glob
 import zipfile
+from datetime import datetime
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import matplotlib.gridspec as gsp
+from unidecode import unidecode
 
 def extract_zipfile(zip_file_path, extract_to_path):
     with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
         zip_ref.extractall(extract_to_path)
     print("Inner file extracted ", os.listdir(extract_to_path))
+
+
 
 extensions = {'DataFrame': '.csv', 'GeoDataFrame': ''}
 
@@ -53,7 +62,7 @@ def save_clean_data(file, filename, output_folder = rf'/nfs/home/genovese/thesis
             print("File not overwritten")
             
 
-import pandas as pd
+
 
 def get_outliers(series):
     Q1 = series.quantile(0.25)
@@ -63,12 +72,6 @@ def get_outliers(series):
     outliers = series[(series < Q1 - 1.5 * IQR) | (series > Q3 + 1.5 * IQR)]
     return outliers
 
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
-import geopandas as gpd
-import matplotlib.gridspec as gsp
 
 def histbox(var, color='blue', xlabel=None, title=None):
     fig = plt.figure(figsize=(6,6))
@@ -106,8 +109,6 @@ def histbox(var, color='blue', xlabel=None, title=None):
     plt.show()
 
 
-from unidecode import unidecode
-
 lettere_strane = {
     "a": ['à', 'á', 'â', 'â', 'ã', 'å', 'ā'],
     "e": ['è', 'é', 'ê', 'ë', 'ē', 'ĕ'], 
@@ -122,8 +123,6 @@ lettere_strane = {
 }
 
 
-
-
 def uniform_strings(row, var):
     # for normale, strane in lettere_strane.items():
     #     for strana in strane:
@@ -136,7 +135,6 @@ def check_strange_letters(df, var):
     return(df[~df[var].str.contains(r'^[A-Za-z\s\-\_\']+$')])
 
 
-from datetime import datetime
 def separate_date(df, col):
     df[col] = pd.to_datetime(df[col])
     df['YYYY'] = df[col].dt.year
