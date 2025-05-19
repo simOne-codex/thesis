@@ -33,9 +33,9 @@ def format_output_file(file, output_path, overwrite=False):
         else:
             os.remove(complete_filename)
     if filetype == 'DataFrame':
-        file.to_csv(complete_filename)
+        file.to_csv(complete_filename, index=False)
     elif filetype == 'GeoDataFrame':
-        file.to_file(complete_filename)
+        file.to_file(complete_filename, index=False)
     else:
         raise('Format not supported, file type: ', filetype)
 
