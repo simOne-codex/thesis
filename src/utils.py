@@ -22,7 +22,7 @@ def extract_zipfile(zip_file_path, extract_to_path):
 
 
 
-extensions = {'DataFrame': '.csv', 'GeoDataFrame': ''}
+extensions = {'DataFrame': '.csv', 'GeoDataFrame': '.geojson'}
 
 def format_output_file(file, output_path, overwrite=False):
     filetype = file.__class__.__name__
@@ -35,7 +35,7 @@ def format_output_file(file, output_path, overwrite=False):
     if filetype == 'DataFrame':
         file.to_csv(complete_filename, index=False)
     elif filetype == 'GeoDataFrame':
-        file.to_file(complete_filename, index=False)
+        file.to_file(complete_filename, index=False, driver ='GeoJSON')
     else:
         raise('Format not supported, file type: ', filetype)
 
