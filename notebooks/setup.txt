@@ -18,6 +18,38 @@ git commit -m "Comment to the commit"
 git push -u origin (optional name of the brach. main is the default one)
 
 
+TO RUN SLURM
+nano my_job.slurm
+
+inside the slurm terminal write:
+#!/bin/bash
+SBATCH --job-name=my_job
+SBATCH --output=output_%j.log
+SBATCH --error=error_%j.log
+SBATCH --time=00:10:00
+SBATCH --partition=standard
+SBATCH --ntasks=1
+SBATCH --cpus-per-task=1
+SBATCH --mem=1G
+
+# Load modules or activate environment if needed
+# module load python
+# source activate my_env
+
+# Run your command
+python my_script.py
+
+
+Press Ctrl + O → Enter (to save)
+Press Ctrl + X (to exit)
+
+in the terminal write 
+sbatch my_job.slurm
+
+To monitor the job:
+squeue -u $USER
+
+
 
 TO EXPORT MULTIPLE LAYERS FROM QGIS
 Use a Geopackage file in "save as" and every time just Export a layer into the same file
