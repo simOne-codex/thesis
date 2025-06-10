@@ -14,6 +14,7 @@ import seaborn as sns
 import numpy as np
 import matplotlib.gridspec as gsp
 from unidecode import unidecode
+from tqdm import tqdm
 
 def extract_zipfile(zip_file_path, extract_to_path):
     with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:

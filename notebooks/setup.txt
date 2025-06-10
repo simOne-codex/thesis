@@ -23,18 +23,14 @@ nano my_job.slurm
 
 inside the slurm terminal write:
 #!/bin/bash
-SBATCH --job-name=my_job
-SBATCH --output=output_%j.log
-SBATCH --error=error_%j.log
-SBATCH --time=00:10:00
-SBATCH --partition=standard
-SBATCH --ntasks=1
-SBATCH --cpus-per-task=1
-SBATCH --mem=1G
-
-# Load modules or activate environment if needed
-# module load python
-# source activate my_env
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=telegram:genovese
+#SBATCH --gpus=1
+#SBATCH --ntasks=1
+#SBATCH --time=50:00
+#SBATCH --mem-per-cpu=30G
+#SBATCH --job-name=test_job
+#SBATCH --output=job_output.txt
 
 # Run your command
 python my_script.py
@@ -49,6 +45,9 @@ sbatch my_job.slurm
 To monitor the job:
 squeue -u $USER
 
+
+TROUBLESHOOTING:
+If a command needs more cpu to run, add gigabites to mem-per-cpu, add gpus, add tasks
 
 
 TO EXPORT MULTIPLE LAYERS FROM QGIS
