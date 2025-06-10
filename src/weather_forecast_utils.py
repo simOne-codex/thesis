@@ -4,22 +4,17 @@ from importlib import reload
 import utils
 reload(utils)
 from utils import *
+import weather_forecast_utils
+reload(weather_forecast_utils)
+from weather_forecast_utils import *
 data_folder = '/nfs/home/genovese/thesis-wildfire-genovese/data/'
-
-import pickle 
-with open('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/data_for_weather_kriging.pkl', 'rb') as f:
-     loaded_dict = pickle.load(f)
-     
-print(list(loaded_dict.keys()))
-
-ignitions = gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/kriging_weatehr_grid.geojson'
-                       ).rename(columns={'day_of_year': 'day'}) 
 
 
 from sklearn.ensemble import GradientBoostingRegressor
 from pykrige.rk import RegressionKriging
 
 def rk_train_pred(X_train, X_pred, target_col):
+
     RK = RegressionKriging(regression_model = GradientBoostingRegressor(), method='universal', variogram_model = 'spherical', verbose=1)
        
     RK.fit(p = X_train[['height']], x = np.transpose(np.array([X_train.geometry.x, X_train.geometry.y])), y = X_train[target_col])
@@ -51,10 +46,3 @@ def yearly_forecast(loaded_dict, target, year):
         forecasts.merge(parameter_forecast, on='geometry', how='inner')
 
     return forecasts
-
-
-
-weather_forecast = dict()
-
-for year in tqdm(ignitions.YYYY.unique()):
-    weather_forecast[year] = yearly_forecast(loaded_dict, ignitions, year)

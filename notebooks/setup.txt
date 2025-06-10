@@ -21,7 +21,8 @@ git push -u origin (optional name of the brach. main is the default one)
 TO RUN SLURM
 nano my_job.slurm
 
-inside the slurm terminal write:
+Puoi lanciare un solo slurm alla volta
+inside the slurm terminal write (all SBATCH options are optional) :
 #!/bin/bash
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=telegram:genovese
