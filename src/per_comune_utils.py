@@ -71,12 +71,15 @@ grado_u = {'Zone rurali': 0,
 cache = '/nfs/home/genovese/thesis-wildfire-genovese/database/cache/'
 
 
+
 def yearly_data_processing(year, a, b, c, d, e):
+    agricensus = gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/data/gathering_geojson/per_comune/agricensus/2020.geojson')
     i18, o18, ifc18, p16, r16 = loader(a, b, c, d, e)
     gdf = i18.merge(o18, how='outer', on='geometry'
                   ).merge(ifc18, how='outer', on='geometry'
                           ).merge(p16, how='outer', on='geometry'
-                                  ).merge(r16, how='outer', on='geometry')
+                                  ).merge(r16, how='outer', on='geometry'
+                                          ).merge(agricensus, how='outer', on='geometry')
     
     gdf.drop(columns=gdf.columns[gdf.isna().all()], inplace=True)
     
@@ -98,28 +101,32 @@ def yearly_data_processing(year, a, b, c, d, e):
 
     gdf.rename(columns={'IFC (decil': 'IFC (decile)'}, inplace=True)
 
-    gdf['IFC (valore)'] = gdf['Descriz'].map(gradi_fragilita)
-    gdf['Fascia demografica'] = gdf['Et amp dem'].map(fasce_demografiche)
-    gdf['Grado di urbanizzazione'] = gdf['Et Grado U'].map(grado_u)
-    gdf.drop(columns=['Descriz', 'Et amp dem', 'Et Grado U'], inplace=True)
+    descrizione = [col for col in gdf.columns if 'descriz' in col.lower()][0]
+    etampdem = [col for col in gdf.columns if 'et amp' in col.lower()][0]
+    etgradou = [col for col in gdf.columns if 'et grado' in col.lower()][0]
+
+    gdf['IFC (valore)'] = gdf[descrizione].map(gradi_fragilita)
+    gdf['Fascia demografica'] = gdf[etampdem].map(fasce_demografiche)
+    gdf['Grado di urbanizzazione'] = gdf[etgradou].map(grado_u)
+    gdf.drop(columns=[descrizione, etampdem, etgradou], inplace=True)
 
 
-    for i, col in enumerate(gdf.columns):
+    for col in gdf.columns:
         if str(gdf[col].dtype) == 'object':
-            for i in gdf[col].index:
-                c = gdf.loc[i, col]
+            for j in gdf[col].index:
+                c = gdf.loc[j, col]
                 if isinstance(c, str):
                     if c.isnumeric():
-                        gdf.loc[i, col] = float(c.replace(',', '.'))
+                        gdf.loc[j, col] = float(c.replace(',', '.'))
         
         if col not in ['geometry']:
             if not gdf[col].apply(lambda x: isinstance(x, str)).any():
                 gdf[col] = gdf[col].astype('float64')
         
         if '_x' in col:
-            gdf.rename(columns={gdf.columns[i]: col.replace('_x', '_istruzione')}, inplace=True)
+            gdf.rename(columns={col: col.replace('_x', '_istruzione')}, inplace=True)
         if '_y' in col:
-            gdf.rename(columns={gdf.columns[i]: col.replace('_y', '_occupazione')}, inplace=True)
+            gdf.rename(columns={col: col.replace('_y', '_occupazione')}, inplace=True)
         
 
     save_clean_data(gdf, f'per_comune_{year}_provvisorio', '/nfs/home/genovese/thesis-wildfire-genovese/data/gathering_geojson/per_comune')

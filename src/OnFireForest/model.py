@@ -1,4 +1,8 @@
-from .DataLoader import DataLoader
+from .PointDataLoader import PointDataLoader
+
+
+# VGG16 pretrained convolutional nn model that falls into a random forest
+
 
 class OnFireForest():
 
