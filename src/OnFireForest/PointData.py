@@ -13,8 +13,9 @@ class PointData():
     def get_table(self):
         return self.__data
 
-    def __variable_percentage(self, buffer, clipped, var):
-        areas_ratios = dict.fromkeys(clipped[var].unique())
+    def __variable_percentage(self, buffer, clipped, var, vegetazione_gdf):
+        possible_values = list(vegetazione_gdf[var].unique())
+        areas_ratios = dict.fromkeys(possible_values)
         buffer_area = buffer.area[0]
 
         for value in areas_ratios.keys():
@@ -36,21 +37,21 @@ class PointData():
         clipped = clipped[~clipped.is_empty]
     
         # Calculate percentage coverage
-        result = gpd.GeoSeries([query_point], index = ['geometry'], crs="EPSG:3857")
+        result = gpd.GeoSeries(query_point, index = ['geometry'], crs="EPSG:3857")
 
         # Compute ratios for every variable value
         for var in vars:
-            areas_ratios = self.__variable_percentage(buffer, clipped, var)
+            areas_ratios = self.__variable_percentage(buffer, clipped, var, gdf)
             for key, ratio in areas_ratios.items():
                 name = str(var)+'_'+str(key)
                 new_line = pd.Series([ratio], index=[name])
-                result = pd.concat([result, new_line])
+                result = pd.concat([result, new_line], axis=0)
 
         return pd.Series([result.drop(columns='geometry')])
 
 
     def __missing_georeference(self, df):
-        return (df.shape[0] > 0)
+        return ~(df.shape[0] > 0)
 
 
     def gather_point_data(self, per_comune_gdf, altimetria_gdf, vegetazione_gdf, strade_gdf, meteo_gdf, day, query_point, radius_meters=1000):
@@ -72,8 +73,8 @@ class PointData():
         data_altimetria = pd.Series(aux.loc[aux.index[0], [col for col in aux.columns if col not in ['geometry']]])
 
         # copertura vegetazione nel raggio di radius_meters
-        data_vegetazione = pd.Series(self.__polygon_coverage_in_buffer(vegetazione_gdf, 
-                                                             query_point, 
+        data_vegetazione = pd.Series(self.__polygon_coverage_in_buffer(vegetazione_gdf ,
+                                                                       query_point, 
                                                              [col for col in vegetazione_gdf.columns if col not in ['geometry']],
                                                               radius_meters))
         # copertura strade nel raggio di radius_meters
