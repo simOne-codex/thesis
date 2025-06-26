@@ -4,10 +4,6 @@ from importlib import reload
 import utils
 reload(utils)
 from utils import *
-import weather_forecast_utils
-reload(weather_forecast_utils)
-from weather_forecast_utils import *
-data_folder = '/nfs/home/genovese/thesis-wildfire-genovese/data/'
 
 
 from sklearn.ensemble import GradientBoostingRegressor

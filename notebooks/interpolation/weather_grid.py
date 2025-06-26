@@ -4,7 +4,6 @@ from importlib import reload
 import utils
 reload(utils)
 from utils import *
-data_folder = '/nfs/home/genovese/thesis-wildfire-genovese/data/'
 
 target = separate_date(gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/data/nicola/piedmont_2012_2024_fa.geojson'), 'initialdate')
 def month_day_to_day_number(year, month, day):
@@ -42,4 +41,4 @@ points_gdf = gpd.GeoDataFrame(
 for_kriging = gpd.GeoDataFrame(target[['day_of_year', 'ignition_point', 'YYYY']], geometry='ignition_point'
                                ).rename(columns={'ignition_point': 'geometry'}).merge(points_gdf, on='geometry', how='inner')
 
-for_kriging.to_file('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/kriging_weatehr_grid.geojson')
+for_kriging.to_file('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/kriging_weather_grid.geojson')
