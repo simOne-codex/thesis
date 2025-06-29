@@ -101,7 +101,7 @@ class PointData():
 
 class PointDataLoader():
 
-    def __init__(self, anno=None, mese=None, giorno=None, x=None, y=None, crs=None):
+    def __init__(self, anno=None, mese=None, giorno=None, day_of_year = None, x=None, y=None, crs=None):
         self.__anno = anno
         self.__mese = mese
         self.__giorno = giorno
@@ -129,7 +129,7 @@ class PointDataLoader():
         return result
 
 
-    def set_coordinates(self, anno, mese, giorno, x, y, crs):
+    def set_coordinates(self, anno, mese, giorno, day_of_year, x, y, crs):
         self.__anno = anno
         self.__mese = mese
         self.__giorno = giorno
@@ -173,6 +173,12 @@ class PointDataLoader():
                                      query_point=self.__coordinates,
                                      radius_meters=1000)
         
-        self.__data = point_data.get_table()
+        table = point_data.get_table()
+        table['YYYY'] = self.__anno
+        table['MM'] = self.__mese
+        table['DD'] = self.__giorno
+        table['ignition_point (epsg=3857)'] = self.__coordinates
+
+        self.__data = table
 
     
