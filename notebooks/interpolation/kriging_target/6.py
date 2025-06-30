@@ -25,7 +25,7 @@ from sklearn.metrics import mean_squared_error
 
 # Define parameter grid for Kriging
 param_grid = {
-    "method": ["ordinary", "universal"],
+    "method": ["ordinary"],
     "variogram_model": ["spherical"],
 }
 
@@ -38,14 +38,15 @@ grid_search = GridSearchCV(
     param_grid=param_grid,
     scoring='neg_mean_squared_error',
     cv=10,
-    verbose=True
+    verbose=True,
+    n_jobs=-1
 )
 
 # Fit GridSearch
 grid_search.fit(tot.geometry, tot.label)
 
 result = pd.DataFrame(grid_search.cv_results_)
-save_clean_data(result, f"{param_grid['variogram_model'][0]}_target_kriging", '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches')
+save_clean_data(result, f"{param_grid['method'][0]}_{param_grid['variogram_model'][0]}_target_kriging", '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches')
 
 # Print best model
 print("Best parameters:", grid_search.best_params_)

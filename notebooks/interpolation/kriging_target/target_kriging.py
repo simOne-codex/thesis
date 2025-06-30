@@ -26,27 +26,30 @@ from sklearn.metrics import mean_squared_error
 # Define parameter grid for Kriging
 param_grid = {
     "method": ["ordinary"],
-    "variogram_model": ['hole-effect'],
+    "variogram_model": ["linear", "power", "exponential", "gaussian", "spherical"],
 }
 
 # Create Kriging model (scikit-learn wrapper)
 kriging_model = Krige()
 
-# GridSearch with 5-fold cross-validation
+# GridSearch with 10-fold cross-validation
 grid_search = GridSearchCV(
     estimator=kriging_model,
     param_grid=param_grid,
     scoring='neg_mean_squared_error',
     cv=10,
-    verbose=True,
+    verbose=10,
     n_jobs=-1
 )
 
 # Fit GridSearch
-grid_search.fit(tot.geometry, tot.label)
+print('Gets here')
+grid_search.fit(np.array(pd.concat([tot.geometry.x, tot.geometry.y], axis=1)), tot.label)
+print('passes over')
 
 result = pd.DataFrame(grid_search.cv_results_)
-save_clean_data(result, f"{param_grid['method'][0]}_{param_grid['variogram_model'][0]}_target_kriging", '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches')
+print('time to save')
+save_clean_data(result, f"universal_target_kriging", '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches')
 
 # Print best model
 print("Best parameters:", grid_search.best_params_)
