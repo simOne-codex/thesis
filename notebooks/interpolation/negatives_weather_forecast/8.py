@@ -16,4 +16,5 @@ with open('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_krig
 
 ignitions = gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/kriging_negative_weather_grid.geojson') 
 
-save_clean_data(yearly_forecast(loaded_dict, ignitions, 2023), str(2023), '/nfs/home/genovese/thesis-wildfire-genovese/data/negative_output_weather_kriging')
+save_clean_data(yearly_forecast(loaded_dict, ignitions, 2023), str(2023), '/nfs/home/genovese/thesis-wildfire-genovese/data/negative_output_weather_kriging',
+                force=True)

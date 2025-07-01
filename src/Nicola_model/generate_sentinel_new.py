@@ -45,7 +45,7 @@ def are_images_similar(img1, img2, tolerance_percentage=0.005):
     return mean_relative_diff < tolerance_percentage
 
 
-def process_single_fire(fire_id, config):
+def process_single_fire(fire_id, config, root):
     """
     Processa un singolo incendio, cercando immagini Sentinel-2 *prima* dell'incendio,
     ritagliandole e generando una singola maschera GT per incendio.
@@ -53,7 +53,7 @@ def process_single_fire(fire_id, config):
     """
     
     main_geojson_path = config["geojson_path"]
-    ROOT_DATASET_FOLDER = "piedmont_new" 
+    ROOT_DATASET_FOLDER = root 
     
     os.makedirs(ROOT_DATASET_FOLDER, exist_ok=True)
     

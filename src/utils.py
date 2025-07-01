@@ -42,7 +42,7 @@ def format_output_file(file, output_path, overwrite=False):
 
 
 
-def save_clean_data(file, filename, output_folder = rf'/nfs/home/genovese/thesis-wildfire-genovese/data/clean_data'):
+def save_clean_data(file, filename, output_folder = rf'/nfs/home/genovese/thesis-wildfire-genovese/data/clean_data', force=False):
     
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -54,7 +54,10 @@ def save_clean_data(file, filename, output_folder = rf'/nfs/home/genovese/thesis
         print(f"File saved to: {output_path}")
     else: 
         print(f"File {filename} already saved")
-        user_response = input("Do you want to overwrite it? (y/n): ").strip().lower()
+        if force:
+            user_response = 'y'
+        else:
+            user_response = input("Do you want to overwrite it? (y/n): ").strip().lower()
         if user_response == 'y':
         # Proceed with overwriting the file
             format_output_file(file, output_path, overwrite=True)

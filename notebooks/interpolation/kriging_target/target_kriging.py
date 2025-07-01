@@ -49,7 +49,7 @@ print('passes over')
 
 result = pd.DataFrame(grid_search.cv_results_)
 print('time to save')
-save_clean_data(result, f"universal_target_kriging", '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches')
+save_clean_data(result, f"ordinary_target_kriging", '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches')
 
 # Print best model
 print("Best parameters:", grid_search.best_params_)

@@ -33,7 +33,7 @@ ignitions['day'] = ignitions.apply(lambda x: month_day_to_day_number(x['YYYY'], 
 
 
 
-fires = pd.concat([ignitions[['YYYY', 'day']].reset_index(drop=True), pd.Series([Point(x, y) for x, y in zip(ignitions.point_x, ignitions.point_y)])], axis=1).rename(columns={0: 'geometry'})
+fires = pd.concat([ignitions[['YYYY', 'day', 'MM', 'DD']].reset_index(drop=True), pd.Series([Point(x, y) for x, y in zip(ignitions.point_x, ignitions.point_y)])], axis=1).rename(columns={0: 'geometry'})
 
 
 def create_random_point(min_year, max_year, fires, polygons, buffer_distance = 1000):
@@ -50,7 +50,7 @@ def create_random_point(min_year, max_year, fires, polygons, buffer_distance = 1
                                    columns=['geometry']).union_all(method='unary')
         geometry_check = polygons.union_all(method='unary').difference(buffers)
     else:
-        geometry_check = polygons.unary_union
+        geometry_check = polygons.union_all(method='unary')
     
     pminx, pminy, pmaxx, pmaxy = geometry_check.bounds
 

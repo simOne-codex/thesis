@@ -1,0 +1,7 @@
+geojson_path: /nfs/home/genovese/thesis-wildfire-genovese/src/OnFireForest/sentinel_negative_fires/negatives.geojson
+image_similarity_tolerance: 0.005
+interval_pre_fire_days: 7
+min_fire_area_sq_m: 200
+patch_size_pixels: 256
+satellite: sentinel-2
+target_crs: EPSG:32632
