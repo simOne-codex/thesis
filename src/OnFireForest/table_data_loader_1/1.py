@@ -22,7 +22,6 @@ for f in tqdm(fires.index[:80]):
                            crs = crs)
     data.load()
     table = data.get_table()
-    table['fire_id'] = row['id']
     final_data = pd.concat([final_data, table], ignore_index=True)
 
 current = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/table_data_input.csv')

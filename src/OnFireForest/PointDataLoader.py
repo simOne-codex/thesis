@@ -88,8 +88,6 @@ class PointData():
             cols = [col for col in meteo_gdf.columns if col not in ['geometry', 'day', 'YYYY', 'height']]
             data_meteo = pd.Series([None]*len(cols), index = cols)
         else:
-            print('input day:', day)
-            print(aux)
             data_meteo = pd.Series(aux[aux.day == day].loc[aux[aux.day == day].index[0],[col for col in aux.columns if col not in ['geometry', 'day', 'YYYY', 'height']]])
 
 

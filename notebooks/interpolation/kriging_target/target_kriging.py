@@ -43,14 +43,10 @@ grid_search = GridSearchCV(
 )
 
 # Fit GridSearch
-print('Gets here')
 grid_search.fit(np.array(pd.concat([tot.geometry.x, tot.geometry.y], axis=1)), tot.label)
-print('passes over')
-
 result = pd.DataFrame(grid_search.cv_results_)
-print('time to save')
-save_clean_data(result, f"ordinary_target_kriging", '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches')
 
-# Print best model
-print("Best parameters:", grid_search.best_params_)
-print("Best MSE:", -grid_search.best_score_)
+folder_path = '/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches'
+file_name = "ordinary_target_kriging"
+os.makedirs(folder_path, exist_ok=True)
+save_clean_data(result, file_name, folder_path)

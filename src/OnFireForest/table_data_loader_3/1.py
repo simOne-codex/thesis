@@ -24,5 +24,5 @@ for f in tqdm(fires.index[:80]):
     table = data.get_table()
     final_data = pd.concat([final_data, table], ignore_index=True)
 
-current = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/negatives_table_data_input.csv')
-pd.concat([current, final_data], ignore_index=True).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/negatives_table_data_input.csv', index=False)
+current = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/negative_table_data_input.csv')
+pd.concat([current, final_data], ignore_index=True).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/negative_table_data_input.csv', index=False)
