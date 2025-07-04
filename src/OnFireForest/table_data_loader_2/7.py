@@ -12,7 +12,7 @@ fires = gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/database/pied
 final_data = pd.DataFrame()
 crs = fires.crs
 
-for f in tqdm(fires.index[1100:]):
+for f in tqdm(fires.index[1120:]):
     row = fires.loc[f, :]
     data = PointDataLoader(anno = row.YYYY,
                            mese = row.MM,
