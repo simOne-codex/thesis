@@ -7,10 +7,9 @@ from importlib import reload
 reload(random_forest_only)
 from random_forest_only import run_rf_only
 
-
 run_rf_only(
-    input_csv_path='/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/not_imputed_dataset_non_kriged.csv',
+    input_csv_path='/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/not_imputed_dataset_kriged.csv',
     regression=True,
-    results_file_name='regression_non_kriged',
-    random_state = 18
+    results_file_name='regression_kriged',
+    random_state = 21
     )
