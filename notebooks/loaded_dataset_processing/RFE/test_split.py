@@ -13,7 +13,8 @@ X_train, X_test, y_train, y_test = train_test_split(explanatory_rekriged,
                                                     target_rekriged,
                                                     test_size=0.15,
                                                     shuffle=True,
-                                                    random_state=random_state)
+                                                    random_state=random_state,
+                                                    stratify=True)
 pd.DataFrame(X_test).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/X_test_rekriged.csv')
 pd.DataFrame(y_test).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/y_test_rekriged.csv')
 
@@ -24,6 +25,7 @@ X_train, X_test, y_train, y_test = train_test_split(explanatory_non_rekriged,
                                                     target_non_rekriged,
                                                     test_size=0.15,
                                                     shuffle=True,
-                                                    random_state=random_state)
+                                                    random_state=random_state,
+                                                    stratify=True)
 pd.DataFrame(X_test).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/X_test_non_rekriged.csv')
 pd.DataFrame(y_test).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/y_test_non_rekriged.csv')

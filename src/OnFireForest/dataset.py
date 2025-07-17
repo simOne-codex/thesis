@@ -1,13 +1,15 @@
 import os
 import torch
 import rasterio
-import torch.nn.functional as F
+import torch.nn as nn
 import numpy as np
-from typing import Tuple, Optional, Dict
+from typing import Tuple, Dict
 import cv2
+from tqdm import tqdm
 import albumentations as A
 from augmentations import SentinelAugmentations
 from albumentations.pytorch import ToTensorV2 
+import pandas as pd
 
 
 class PiedmontDataset(torch.utils.data.Dataset):
@@ -183,8 +185,17 @@ class PiedmontDataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.fire_dirs)
 
-    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
-        fire_dir = self.fire_dirs[idx]
+    def getitem(self, idx: int, is_fire_idx: bool = False) -> Tuple[torch.Tensor, torch.Tensor]:
+        if is_fire_idx:
+            fire_dir = [f for f in self.fire_dirs if (str(idx)==f.split('_')[-1])]
+            if not fire_dir:
+                return None
+            else:
+                fire_dir = fire_dir[0]
+        else:
+            fire_dir = self.fire_dirs[idx]
+            if not fire_dir:
+                return None
         files = os.listdir(fire_dir)
 
         sentinel_files = sorted([
@@ -299,10 +310,13 @@ class PiedmontDataset(torch.utils.data.Dataset):
         
         return image_normalized, processed_mask
 
-    def get_sample_info(self, idx: int) -> dict:
+    def get_sample_info(self, idx: int, is_fire_idx: bool = False) -> dict:
         """Restituisce informazioni sul campione per debugging"""
-        fire_dir = self.fire_dirs[idx]
-        files = os.listdir(fire_dir)
+        if is_fire_idx:
+            fire_dir = [f for f in self.fire_dirs if (str(idx) == f.split('_')[-1])]
+        else:
+            fire_dir = [self.fire_dirs[idx]]
+        files = os.listdir(fire_dir[0])
         
         sentinel_files = [f for f in files if f.endswith(".tif") and "pre_sentinel" in f]
         gt_files = [f for f in files if "GTSentinel" in f]
@@ -314,3 +328,65 @@ class PiedmontDataset(torch.utils.data.Dataset):
             'num_sentinel': len(sentinel_files),
             'num_gt': len(gt_files)
         }
+    
+
+
+# CNN Feature Extractor
+class ReduceToOnePixelNet(nn.Module):
+    def __init__(self, in_channels=36, img_size=256):
+        super(ReduceToOnePixelNet, self).__init__()
+
+        layers = []
+
+        channels = in_channels
+        while(img_size > 1):  # 256 -> 128 -> ... -> 1
+            # out_channels = base_channels * min(2**i, 8) 
+            layers.append(nn.Conv2d(channels, channels, kernel_size=3, stride=2, padding=1))
+            layers.append(nn.ReLU(inplace=True))
+            img_size = int(img_size/2)
+
+        self.encoder = nn.Sequential(*layers)
+
+    def forward(self, x):
+        r = self.encoder(x)
+        return r.view(1, -1)
+
+
+# Image + Tabular Dataset
+class TabularImageDataset():
+    
+    def __init__(self, df, tif_df, id_col):
+        self.table = df
+        np.random.seed(816)
+        if id_col:
+            self.table = self.table.set_index(id_col)
+        self.images = tif_df
+        self.df = None
+        self.is_concatenated_ = False
+
+    def __len__(self):
+        return len(self.table)
+    
+    def concat(self, in_channels=36, is_fire_idx=False):
+        rrp = ReduceToOnePixelNet()
+        dic = {f'sentinel_{c+1}': {} for c in range(in_channels)}
+        for idx in tqdm(self.table.index):
+            base_tif = self.images.getitem(idx, is_fire_idx=is_fire_idx)
+            if base_tif is None:
+                transformed = [None]*36
+            else:
+                transformed = rrp.forward(base_tif[0]).flatten().tolist()
+            for n, item in enumerate(transformed):
+                dic[f'sentinel_{n+1}'][idx] = item
+        transformed_df = pd.DataFrame(dic)
+        self.df = pd.concat([self.table, transformed_df], axis=1)
+        self.is_concatenated_ = True
+
+    def __getitem__(self, idx, is_fire_idx=False):
+        if not self.is_concatenated_:
+            raise IndexError('Dataset not concatenated yet, run method .concat()')
+        else:
+            if is_fire_idx:
+                return self.df.loc[idx, :]
+            else:
+                return self.df.iloc[idx, :]
