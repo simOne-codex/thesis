@@ -8,6 +8,7 @@ from utils import *
 
 from sklearn.ensemble import GradientBoostingRegressor
 from pykrige.rk import RegressionKriging
+import pickle
 
 def rk_train_pred(X_train, X_pred, target_col):
     
@@ -52,3 +53,50 @@ def yearly_forecast(loaded_dict, target, year):
         forecasts = forecasts.merge(parameter_forecast[['geometry', var]], on='geometry', how='inner')
 
     return forecasts
+
+
+
+
+class ConstantPredictor():
+    def __init__(self, constant_value):
+        self.constant_value = constant_value
+
+    def predict(self, input_array):
+        return np.array(self.constant_value, input_array.shape[1])
+
+
+
+
+
+def rk_train(X_train, target_col):
+
+    # no data case
+    if X_train[target_col].isna().all(): 
+        return ConstantPredictor(None)
+    
+    # univariate case
+    elif X_train[target_col].nunique() == 1: 
+        return ConstantPredictor(X_train[target_col].unique()[0])
+    
+    # interpolable case
+    else: 
+        RK = RegressionKriging(regression_model = GradientBoostingRegressor(), method='universal', variogram_model = 'spherical', verbose=False)
+        RK.fit(p = X_train[['height']], x = np.transpose(np.array([X_train.geometry.x, X_train.geometry.y])), y = X_train[target_col])
+        return RK
+
+
+
+
+def daily_forecast(loaded_dict: dict, year: int, vars: list):
+    centraline = loaded_dict[year]
+    
+    for var in tqdm(vars, desc=f'Running year: {year}'):
+        gdf =  centraline[var]
+        
+        for day in tqdm(list(gdf.day.unique()), desc=f'Running variable: {var}'):
+            X_train = gdf[gdf.day == day].to_crs(epsg=3857)
+            model = rk_train(X_train, var)
+            with open(f'/nfs/home/genovese/thesis-wildfire-genovese/database/daily_weather_maps/{year}_{day}_{var}.pkl', 'wb') as f:
+                pickle.dump(model, f)
+
+    return

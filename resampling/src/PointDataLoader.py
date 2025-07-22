@@ -7,10 +7,9 @@ import pickle
 
 class PointData():
 
-    def __init__(self, year, day):
+    def __init__(self, year):
         self.__data = None
         self.__year = year
-        self.__day = day
 
     def get_table(self):
         return self.__data
@@ -77,7 +76,7 @@ class PointData():
         return transform[month] 
 
 
-    def gather_point_data(self, per_comune_gdf, altimetria_gdf, vegetazione_gdf, strade_gdf, variabili_meteo, query_point, radius_meters=1000, resample=False):
+    def gather_point_data(self, per_comune_gdf, altimetria_gdf, vegetazione_gdf, strade_gdf, variabili_meteo, query_point, radius_meters=1000):
 
         # dati per comune
         aux = per_comune_gdf[per_comune_gdf.contains(query_point)]
@@ -106,42 +105,29 @@ class PointData():
                                                                 [col for col in strade_gdf.columns if col not in ['geometry']],
                                                                 radius_meters)
         # previsioni meteo del punto
-        if resample:
-            lst = []
-            for month in range(1, 13):
-                lst.extend([f"{param}_{month}" for param in variabili_meteo])
-            data_meteo = pd.DataFrame({key: {0: None} for key in lst})
-            
+        """
+        lst = []
+        for month in range(1, 13):
+            lst.extend([f"{param}_{month}" for param in variabili_meteo])
+        data_meteo = pd.DataFrame({key: {0: None} for key in lst})
+        
 
-            height = np.array(data_altimetria[['ALTIMETRIA_MEDIANA']][0]).reshape(1, -1)
-            point = np.array([query_point.x,query_point.y]).reshape(1,2)
-            
-            for var, month in zip(variabili_meteo, range(1, 13)):
-                foo = self.__identify_month(month=month, year=self.__year)
-                krige_pred = []
-                for dd in range(foo[0], foo[1]):
-                    with open(f'/nfs/home/genovese/thesis-wildfire-genovese/database/daily_weather_maps/{self.__year}_{dd}_{var}.pkl', 'rb') as f:
-                        model = pickle.load(f)
-                    krige_pred.append(model.predict(p = height, x = point))
-
-                data_meteo.loc[0, f"{var}_{month}"] = np.mean(krige_pred)
-
-            data_meteo = pd.Series(data_meteo.iloc[0, :])
-
-        else:
-            data_meteo = pd.DataFrame({key: {0: None} for key in variabili_meteo})
-            
-            # aux = meteo_gdf.merge(gpd.GeoDataFrame({'geometry':[query_point]}, geometry='geometry'), on='geometry', how='inner')
-            # if not self.__missing_georeference(aux):
-            for var in variabili_meteo:
-                with open(f'/nfs/home/genovese/thesis-wildfire-genovese/database/daily_weather_maps/{self.__year}_{self.__day}_{var}.pkl', 'rb') as f:
+        height = np.array(data_altimetria[['ALTIMETRIA_MEDIANA']][0]).reshape(1, -1)
+        point = np.array([query_point.x,query_point.y]).reshape(1,2)
+        
+        for var, month in zip(variabili_meteo, range(1, 13)):
+            foo = self.__identify_month(month=month, year=self.__year)
+            krige_pred = []
+            for dd in range(foo[0], foo[1]):
+                with open(f'/nfs/home/genovese/thesis-wildfire-genovese/database/daily_weather_maps/{self.__year}_{dd}_{var}.pkl', 'rb') as f:
                     model = pickle.load(f)
+                krige_pred.append(model.predict(p = height, x = point))
 
-                data_meteo.loc[0, var] = model.predict(p=data_altimetria[['ALT_MEDIANA']].rename(columns={'ALT_MEDIANA', 'height'}), x=np.array([query_point.x,query_point.y]).reshape(1,2))
+            data_meteo.loc[0, f"{var}_{month}"] = np.mean(krige_pred)
 
-            data_meteo = pd.Series(data_meteo.iloc[0, :])
-
-        data = pd.concat([data_per_comune, data_vegetazione, data_strade, data_meteo], axis=0)
+        data_meteo = pd.Series(data_meteo.iloc[0, :])
+        """
+        data = pd.concat([data_per_comune, data_vegetazione, data_strade], axis=0) # data meteo missing
 
         self.__data = pd.DataFrame(data).T.astype('float64')
 
@@ -151,10 +137,8 @@ class PointData():
 
 class PointDataLoader():
 
-    def __init__(self, anno=None, mese=None, giorno=None, x=None, y=None, crs=3857):
+    def __init__(self, anno=None, x=None, y=None, crs=3857):
         self.__anno = anno
-        self.__mese = mese
-        self.__giorno = giorno
         self.__data = pd.DataFrame()
 
         if (x is None) | (y is None):
@@ -162,7 +146,7 @@ class PointDataLoader():
         else:
             self.__coordinates = gpd.GeoSeries(Point(x, y), crs=crs).to_crs(epsg=3857).iloc[0]
 
-        if (pd.Series([anno, mese, giorno, x, y]).isna().any()):
+        if (pd.Series([anno, x, y]).isna().any()):
             self.initialised_ = False
         else:
             self.initialised_ = True 
@@ -171,34 +155,19 @@ class PointDataLoader():
     def get_table(self):
         return self.__data
     
-    def get_coordinates(self, params=None):
+    def get_coordinates(self):
         result = {'anno': self.__anno,
-                  'mese': self.__mese,
-                  'giorno': self.__giorno,
                   'coordinate': self.__coordinates}
         return result
 
 
-    def set_coordinates(self, anno, mese, giorno, x, y, crs):
+    def set_coordinates(self, anno, x, y, crs):
         self.__anno = anno
-        self.__mese = mese
-        self.__giorno = giorno
         self.__coordinates = gpd.GeoSeries(Point(x, y), crs=crs).to_crs(epsg=3857).iloc[0]
-        self.initialised_ = True
+        self.initialised_ = True    
 
 
-    def __month_day_to_day_number(self, year, month, day):
-        feb = 28
-        if year in list(range(2000, 2025, 4)):
-            feb += 1
-            
-        days_per_month = [31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        day_of_year = sum(days_per_month[:month - 1]) + day
-        return day_of_year
-    
-
-
-    def load(self, db_path = '/nfs/home/genovese/thesis-wildfire-genovese/database/', resample=False):
+    def load(self, db_path = '/nfs/home/genovese/thesis-wildfire-genovese/database/'):
         if not self.initialised_:
             raise Exception('Space and time coordinates must be set (use method self.set_coordinates)')
 
@@ -206,7 +175,7 @@ class PointDataLoader():
             print('Data already loaded')
             return
 
-        point_data = PointData(year=self.__anno, day=self.__month_day_to_day_number(self.__anno, self.__mese, self.__giorno))
+        point_data = PointData(year=self.__anno)
 
         per_comune_path = os.path.join(db_path, f'per_comune_{self.__anno}.geojson')
         altimetria_path = os.path.join(db_path, f'altimetria.geojson')
@@ -224,14 +193,10 @@ class PointDataLoader():
                                                       'umedia', 'umin', 'umax', 
                                                       'rtot', 'hdd_base18', 'hdd_base20', 
                                                       'cdd_base18'],
-                                     query_point=self.__coordinates,
-                                     radius_meters=1000,
-                                     resample=resample)
+                                     query_point=self.__coordinates)
         
         table = point_data.get_table()
         table['YYYY'] = self.__anno
-        table['MM'] = self.__mese
-        table['DD'] = self.__giorno
         table['ignition_point (epsg=3857)'] = self.__coordinates
 
         self.__data = table

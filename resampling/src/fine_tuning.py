@@ -65,7 +65,7 @@ pd.DataFrame(y_test, columns = target_non_rekriged.columns).to_csv('/nfs/home/ge
 random_state = 92656
 cv_rs=1633
 
-
+"""
 #### REKRIGED GRIDSEARCH
 X_train_r = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/X_train_val_rekriged.csv').set_index('fire_id', drop=True)
 y_train_r = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/y_train_val_rekriged.csv').set_index(X_train_r.index).iloc[:, 1]
@@ -112,7 +112,7 @@ gs_nonr.fit(X_train_nonr, y_train_nonr)
 
 pd.DataFrame(gs_nonr.cv_results_).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/outputs/grid_searches/model_fine_tuning_non_rekriged.csv')
 ####
-
+"""
 
 ########################## CLASSIFIER 
 

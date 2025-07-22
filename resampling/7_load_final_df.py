@@ -9,10 +9,11 @@ import pickle
 import pandas as pd
 import copy
 
-# df = PiedmontDataset(root_dir='/nfs/home/genovese/thesis-wildfire-genovese/database/piedmont', compute_stats=True ,apply_augmentations=False)
-# with open('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/piedmontdataset_initialised.pkl', 'wb') as f:
-#     pickle.dump(df, f)
+df = PiedmontDataset(root_dir='/nfs/home/genovese/thesis-wildfire-genovese/database/piedmont', compute_stats=True ,apply_augmentations=False)
+with open('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/piedmontdataset_initialised.pkl', 'wb') as f:
+    pickle.dump(df, f)
 
+"""
 with open('/nfs/home/genovese/thesis-wildfire-genovese/database/cache/piedmontdataset_initialised.pkl', 'rb') as f:
     df = pickle.load(f)
 
@@ -30,4 +31,4 @@ ttb_r.df.to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_inpu
 ttb_nonr.concat(is_fire_idx=True)
 ttb_nonr.df.to_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input/final_dataset_non_rekriged.csv')
 
-
+"""

@@ -31,5 +31,5 @@ if not os.path.exists('/nfs/home/genovese/thesis-wildfire-genovese/outputs/krige
 grid = gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/outputs/kriged_map/grid_100m_piedmont.geojson')
 predictions = krige.predict(np.array(pd.concat([grid.geometry.x, grid.geometry.y], axis=1)))
 
-with open('/nfs/home/genovese/thesis-wildfire-genovese/outputs/kriged_map/krige_map_output.pkl', 'wb') as f:
+with open('/nfs/home/genovese/thesis-wildfire-genovese/outputs/kriged_map/distribution_kriged_map.pkl', 'wb') as f:
     pickle.dump(predictions, f)

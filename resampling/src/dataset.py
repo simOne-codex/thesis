@@ -368,12 +368,12 @@ class TabularImageDataset():
         return len(self.table)
     
     def concat(self, in_channels=36, is_fire_idx=False):
-        rrp = ReduceToOnePixelNet(in_channels=in_channels)
+        rrp = ReduceToOnePixelNet()
         dic = {f'sentinel_{c+1}': {} for c in range(in_channels)}
         for idx in tqdm(self.table.index):
             base_tif = self.images.getitem(idx, is_fire_idx=is_fire_idx)
             if base_tif is None:
-                transformed = [None]*in_channels
+                transformed = [None]*36
             else:
                 transformed = rrp.forward(base_tif[0]).flatten().tolist()
             for n, item in enumerate(transformed):
