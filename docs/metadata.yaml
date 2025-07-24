@@ -1,0 +1,1026 @@
+IFC:
+  CLASSES:
+    0: .nan
+    1: .nan
+    2: 0 -> 9
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: 0 -> 6
+    16: 0 -> 2
+    17: .nan
+    18: Molto bassa -> Molto alta
+    19: .nan
+    20: Molto bassa -> Molto alta
+    21: .nan
+  DESCRIPTION:
+    0: Codice ISTAT del comune
+    1: Indice composto di Fragilità comunale
+    2: Indice composto di Fragilità comunale
+    3: Tasso di motorizzazione ad alta emissione
+    4: Raccolta indifferenziata dei rifiuti urbani per abitante
+    5: Aree protette
+    6: Densità delle unità locali dell’industria e dei servizi - (ventile)
+    7: Addetti in unità locali a bassa produttività di settore per l’industria e i
+      servizi - (ventile)
+    8: Indice di dipendenza della popolazione aggiustato
+    9: Popolazione di età compresa fra 25 e 64 anni con titolo di studio non oltre
+      la licenza di scuola media inferiore o di avviamento professionale
+    10: Tasso di occupazione (20-64 anni)
+    11: Tasso di incremento della popolazione
+    12: Superficie a rischio frane
+    13: Consumo del suolo
+    14: Indice di accessibilità ai servizi essenziali
+    15: <1k, 1k-5k, 5k-10k, 10k-50k, 50k-100k, 100k-250k, >250k
+    16: zone rurali, piccola città e sobborghi, città
+    17: ???
+    18: Classe di fragilità
+    19: Intervallo di grandezza della popolazione
+    20: Grado urbanizzazione
+    21: POLYGON del comune
+  UNIT OF MEASURE:
+    0: .nan
+    1: Classi di decili
+    2: Classe ordinale
+    3: Per 100 abitanti
+    4: Kg per abitante
+    5: Valori percentuale
+    6: Classi di ventili
+    7: Classi di ventili
+    8: Valori percentuale
+    9: Valori percentuale
+    10: Valori percentuale
+    11: Per 1000 abitanti
+    12: Valori percentuale
+    13: Valori percentuale
+    14: Minuti
+    15: Classe ordinale
+    16: Vclasse ordinale
+    17: Proporzione
+    18: Classe verbale
+    19: Classe intervallo
+    20: Classe verbale
+    21: .nan
+  VARIABLE:
+    0: Codice com
+    1: IFC (decili)
+    2: IFC (valori)
+    3: AMB_01
+    4: AMB_02
+    5: AMB_03
+    6: ECO_01
+    7: ECO_02
+    8: SOC_01
+    9: SOC_02
+    10: SOC_03
+    11: SOC_04
+    12: TER_01
+    13: TER_02
+    14: TER_03
+    15: Fascia demografica
+    16: Grado di urbanizzazione
+    17: Classe amp
+    18: Descrizion
+    19: Et amp dem
+    20: Et Grado U
+    21: geometry
+agricensus:
+  CLASSES:
+    0: .nan
+    1: .nan
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: .nan
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: .nan
+  DESCRIPTION:
+    0: totale superficie agricola
+    1: superficie agricola utilizzata
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: .nan
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: POLYGON del comune
+  UNIT OF MEASURE:
+    0: ettari (hm2)
+    1: ettari (hm2)
+    2: ettari (hm2)
+    3: ettari (hm2)
+    4: ettari (hm2)
+    5: ettari (hm2)
+    6: ettari (hm2)
+    7: ettari (hm2)
+    8: ettari (hm2)
+    9: ettari (hm2)
+    10: ettari (hm2)
+    11: ettari (hm2)
+    12: ettari (hm2)
+    13: ettari (hm2)
+    14: ettari (hm2)
+    15: ettari (hm2)
+    16: ettari (hm2)
+    17: ettari (hm2)
+    18: ettari (hm2)
+    19: ettari (hm2)
+    20: ettari (hm2)
+    21: ettari (hm2)
+    22: ettari (hm2)
+    23: ettari (hm2)
+    24: ettari (hm2)
+    25: ettari (hm2)
+    26: .nan
+  VARIABLE:
+    0: Superficie totale - ettari
+    1: Superficie agricola utilizzata - ettari
+    2: seminativi
+    3: cereali per la produzione di granella
+    4: altri legumi secchi e colture proteiche
+    5: patata
+    6: barbabietola da zucchero
+    7: piante sarchiate da foraggio
+    8: piante industriali
+    9: ortive protette in serra e tunnel accessibili all'uomo
+    10: fiori e piante ornamentali in piena aria
+    11: foraggere avvicendate
+    12: terreni a riposo
+    13: coltivazioni legnose agrarie
+    14: vite
+    15: olivo per la produzione di olive da olio
+    16: agrumi
+    17: piante ornamentali da vivaio
+    18: prati permanenti e pascoli
+    19: Altra superficie rispetto a quella agricola utilizzata, a legna, a boschi
+      e non utilizzata
+    20: totale bovini e bufalini
+    21: totale suini
+    22: totale ovini e caprini
+    23: totale avicoli
+    24: totale alveari
+    25: sementi e piantine
+    26: geometry
+altimetria:
+  CLASSES:
+    0: .nan
+    1: Pianura, Collina, Montagna
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+  DESCRIPTION:
+    0: .nan
+    1: tipo di zona altimetrica
+    2: superficie totale della zona
+    3: quota minima
+    4: quota massima
+    5: differenza di quota totale
+    6: quota media
+    7: quota mediana
+    8: deviazione standard quota
+    9: POLYGON del comune
+  UNIT OF MEASURE:
+    0: .nan
+    1: Classe verbale
+    2: ???
+    3: Metri (m)
+    4: Metri (m)
+    5: Metri (m)
+    6: Metri (m)
+    7: Metri (m)
+    8: '-'
+    9: .nan
+  VARIABLE:
+    0: cod_istat
+    1: zalt_des
+    2: SUPERFICIE
+    3: ALT_MIN
+    4: ALT_MAX
+    5: RANGE
+    6: MEDIA
+    7: MEDIANA
+    8: STD
+    9: geometry
+istruzione:
+  DESCRIPTION:
+    0: .nan
+    1: .nan
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: .nan
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: .nan
+    27: .nan
+    28: .nan
+    29: .nan
+    30: .nan
+    31: .nan
+    32: .nan
+    33: .nan
+    34: .nan
+    35: .nan
+    36: .nan
+    37: .nan
+    38: POLYGON del comune
+  UNIT OF MEASURE:
+    0: unità
+    1: unità
+    2: unità
+    3: unità
+    4: unità
+    5: unità
+    6: unità
+    7: unità
+    8: unità
+    9: unità
+    10: unità
+    11: unità
+    12: unità
+    13: unità
+    14: unità
+    15: unità
+    16: unità
+    17: unità
+    18: unità
+    19: unità
+    20: unità
+    21: unità
+    22: unità
+    23: unità
+    24: unità
+    25: unità
+    26: unità
+    27: unità
+    28: unità
+    29: unità
+    30: unità
+    31: unità
+    32: unità
+    33: unità
+    34: unità
+    35: unità
+    36: unità
+    37: unità
+    38: .nan
+  VARIABLE:
+    0: analfabeti
+    1: alfabeti privi di titolo di studio
+    2: ' licenza di scuola elementare'
+    3: ' licenza di scuola media inferiore o di avviamento professionale'
+    4: ' diploma di istruzione secondaria di II grado o di qualifica professionale
+      (corso di 3-4 anni) compresi IFTS'
+    5: ' diploma di tecnico superiore ITS o titolo di studio terziario di primo livello'
+    6: ' titolo di studio terziario di secondo livello e dottorato di ricerca'
+    7: ' titolo di studio terziario di secondo livello'
+    8: ' dottorato di ricerca/diploma accademico di formazione alla ricerca'
+    9: ' totale'
+    10: ' 9_24_nessun titolo di studio'
+    11: ' 9_24_licenza di scuola elementare'
+    12: ' 9_24_licenza di scuola media inferiore o di avviamento professionale'
+    13: ' 9_24_diploma di istruzione secondaria di II grado o di qualifica professionale
+      (corso di 3-4 anni) compresi IFTS'
+    14: ' 9_24_diploma di tecnico superiore ITS o titolo di studio terziario di primo
+      livello'
+    15: ' 9_24_titolo di studio terziario di secondo livello e dottorato di ricerca'
+    16: ' 9_24_totale'
+    17: ' 25_49_nessun titolo di studio'
+    18: ' 25_49_licenza di scuola elementare'
+    19: ' 25_49_licenza di scuola media inferiore o di avviamento professionale'
+    20: ' 25_49_diploma di istruzione secondaria di II grado o di qualifica professionale
+      (corso di 3-4 anni) compresi IFTS'
+    21: ' 25_49_diploma di tecnico superiore ITS o titolo di studio terziario di primo
+      livello'
+    22: ' 25_49_titolo di studio terziario di secondo livello e dottorato di ricerca'
+    23: ' 25_49_totale'
+    24: ' 50_64_nessun titolo di studio'
+    25: ' 50_64_licenza di scuola elementare'
+    26: ' 50_64_licenza di scuola media inferiore o di avviamento professionale'
+    27: ' 50_64_diploma di istruzione secondaria di II grado o di qualifica professionale
+      (corso di 3-4 anni) compresi IFTS'
+    28: ' 50_64_diploma di tecnico superiore ITS o titolo di studio terziario di primo
+      livello'
+    29: ' 50_64_titolo di studio terziario di secondo livello e dottorato di ricerca'
+    30: ' 50_64_totale'
+    31: ' 65_nessun titolo di studio'
+    32: ' 65_licenza di scuola elementare'
+    33: ' 65_licenza di scuola media inferiore o di avviamento professionale'
+    34: ' 65_diploma di istruzione secondaria di II grado o di qualifica professionale
+      (corso di 3-4 anni) compresi IFTS'
+    35: ' 65_diploma di tecnico superiore ITS o titolo di studio terziario di primo
+      livello'
+    36: ' 65_titolo di studio terziario di secondo livello e dottorato di ricerca'
+    37: ' 65_totale'
+    38: ' geometry'
+meteo:
+  CLASSES:
+    0: .nan
+    1: .nan
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: 0 -> 16
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: .nan
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: .nan
+    27: .nan
+  DESCRIPTION:
+    0: data della rilevazione
+    1: temperatura media
+    2: temperatura massima
+    3: temperatura minima
+    4: classe di rilevazione
+    5: altezza precipitazioni totale giornaliera
+    6: classe di rilevazione
+    7: velocità vento media
+    8: velocità vento raffica massima
+    9: a direzione di provenienza prevalente nella giornata tra i 16 settori della
+      rosa dei venti
+    10: numero di minuti al giorno in cui la direzione di provenienza del vento permane
+      nel settore prevalente
+    11: numero di minuti al giorno con calma di vento (velocità media vento < 0,3
+      m/sec)
+    12: classe di rilevazione
+    13: umidità dell'aria media
+    14: umidità dell'aria minima
+    15: umidità dell'aria massima
+    16: classe di rilevazione
+    17: radiazione solare totale giornaliera nell'unità di superficie
+    18: radiazione solare ???
+    19: sommatoria della differenza tra la temperatura di riferimento (Trif =18°C)
+      e la temperatura media esterna giornaliera
+    20: sommatoria della differenza tra la temperatura di riferimento (Trif =20°C)
+      e la temperatura media esterna giornaliera
+    21: 'sono calcolati come somma delle differenze tra la temperatura media esterna
+      giornaliera e la temperatura di comfort climatico (21°C). La
+
+      differenza viene conteggiata solo per i contributi positivi con temperatura
+      media esterna supera i 24°C'
+    22: anno della rilevazione
+    23: mese della rilevazione
+    24: giorno della rilevazione
+    25: nome della centralina
+    26: quota della centralina
+    27: POINT dell'osservatorio
+  UNIT OF MEASURE:
+    0: aaaa-mm-gg
+    1: °C
+    2: °C
+    3: °C
+    4: codice
+    5: millimetri (mm)
+    6: codice
+    7: m/s
+    8: m/s
+    9: sedicesimi di coordinate (e.g. NNO)
+    10: minuti
+    11: minuti
+    12: codice
+    13: '%'
+    14: '%'
+    15: '%'
+    16: codice
+    17: MJ/m2
+    18: codice
+    19: °C
+    20: °C
+    21: °C
+    22: anno
+    23: mese
+    24: giorno
+    25: stringa
+    26: metri (m)
+    27: .nan
+  'Unnamed: 4':
+    0: .nan
+    1: .nan
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: .nan
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: .nan
+    27: .nan
+  'Unnamed: 5':
+    0: .nan
+    1: .nan
+    2: .nan
+    3: Classe di rilevazione
+    4: A = validazione Automatica, indica un primo livello di validazione prettamente
+      automatico
+    5: M = validazione Manuale, indica un secondo grado più accurato di validazione
+      effettuato da un operatore
+    6: .nan
+    7: 'Le possibili classi di attendibilità del dato sono le seguenti:'
+    8: 0 = Dato registrato OK o senza particolari indicazioni
+    9: '* = Dato registrato incerto (campionato non sulla globalità dei valori o con
+      presenza di dati sospetti)'
+    10: Z = Dato calcolato OK o senza particolari indicazioni
+    11: Y = Dato calcolato incerto (con presenza di dati sospetti o eliminati dal
+      validatore automatico)
+    12: .nan
+    13: Solo per le precipitazioni esistono anche le classi
+    14: 3 = Neve fusa (il valore registrato si riferisce a neve accumulata nel pluviometro
+      e fusa anche successivamente alla precipitazione)
+    15: 5 = precipitazione nevosa (o neve mista a pioggia)
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: .nan
+    27: .nan
+  VARIABLE:
+    0: data
+    1: ' tmedia'
+    2: ' tmax'
+    3: ' tmin'
+    4: ' tclasse'
+    5: ' ptot'
+    6: ' pclasse'
+    7: ' vmedia'
+    8: ' vraffica'
+    9: ' settore_prevalente'
+    10: ' tempo_permanenza'
+    11: ' durata_calma'
+    12: ' vclasse'
+    13: ' umedia'
+    14: ' umin'
+    15: ' umax'
+    16: ' uclasse'
+    17: ' rtot'
+    18: ' rclasse'
+    19: ' hdd_base18'
+    20: ' hdd_base20'
+    21: ' cdd_base18'
+    22: ' YYYY'
+    23: ' MM'
+    24: ' DD'
+    25: ' Denominazione'
+    26: ' Quota (m s.l.m.)'
+    27: ' geometry'
+occupazione:
+  DESCRIPTION:
+    0: .nan
+    1: .nan
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: .nan
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: .nan
+    27: .nan
+    28: .nan
+    29: .nan
+    30: .nan
+    31: .nan
+    32: .nan
+    33: .nan
+    34: .nan
+    35: .nan
+    36: .nan
+    37: .nan
+    38: .nan
+    39: .nan
+    40: .nan
+    41: .nan
+    42: .nan
+    43: .nan
+    44: POLYGON del comune
+  UNIT OF MEASURE:
+    0: unità
+    1: unità
+    2: unità
+    3: unità
+    4: unità
+    5: unità
+    6: unità
+    7: unità
+    8: unità
+    9: unità
+    10: unità
+    11: unità
+    12: unità
+    13: unità
+    14: unità
+    15: unità
+    16: unità
+    17: unità
+    18: unità
+    19: unità
+    20: unità
+    21: unità
+    22: unità
+    23: unità
+    24: unità
+    25: unità
+    26: unità
+    27: unità
+    28: unità
+    29: unità
+    30: unità
+    31: unità
+    32: unità
+    33: unità
+    34: unità
+    35: unità
+    36: unità
+    37: unità
+    38: unità
+    39: unità
+    40: unità
+    41: unità
+    42: unità
+    43: unità
+    44: .nan
+  VARIABLE:
+    0: occupato
+    1: ' in cerca di occupazione'
+    2: ' non forze di lavoro'
+    3: ' percettore/rice di una o più pensioni per effetto di attività lavorativa
+      precedente o di redditi da capitale'
+    4: ' studente/ssa'
+    5: ' casalinga/o'
+    6: ' in altra condizione'
+    7: ' totale'
+    8: ' 15_24_forze di lavoro'
+    9: ' 15_24_occupato'
+    10: ' 15_24_in cerca di occupazione'
+    11: ' 15_24_non forze di lavoro'
+    12: ' 15_24_percettore/rice di una o più pensioni per effetto di attività lavorativa
+      precedente o di redditi da capitale'
+    13: ' 15_24_studente/ssa'
+    14: ' 15_24_casalinga/o'
+    15: ' 15_24_in altra condizione'
+    16: ' 15_24_totale'
+    17: ' 25_49_forze di lavoro'
+    18: ' 25_49_occupato'
+    19: ' 25_49_in cerca di occupazione'
+    20: ' 25_49_non forze di lavoro'
+    21: ' 25_49_percettore/rice di una o più pensioni per effetto di attività lavorativa
+      precedente o di redditi da capitale'
+    22: ' 25_49_studente/ssa'
+    23: ' 25_49_casalinga/o'
+    24: ' 25_49_in altra condizione'
+    25: ' 25_49_totale'
+    26: ' 50_64_forze di lavoro'
+    27: ' 50_64_occupato'
+    28: ' 50_64_in cerca di occupazione'
+    29: ' 50_64_non forze di lavoro'
+    30: ' 50_64_percettore/rice di una o più pensioni per effetto di attività lavorativa
+      precedente o di redditi da capitale'
+    31: ' 50_64_studente/ssa'
+    32: ' 50_64_casalinga/o'
+    33: ' 50_64_in altra condizione'
+    34: ' 50_64_totale'
+    35: ' 65_forze di lavoro'
+    36: ' 65_occupato'
+    37: ' 65_in cerca di occupazione'
+    38: ' 65_non forze di lavoro'
+    39: ' 65_percettore/rice di una o più pensioni per effetto di attività lavorativa
+      precedente o di redditi da capitale'
+    40: ' 65_studente/ssa'
+    41: ' 65_casalinga/o'
+    42: ' 65_in altra condizione'
+    43: ' 65_totale'
+    44: ' geometry'
+popolazione:
+  DESCRIPTION:
+    0: .nan
+    1: .nan
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: POLYGON del comune
+  UNIT OF MEASURE:
+    0: unità
+    1: unità
+    2: unità
+    3: unità
+    4: unità
+    5: unità
+    6: unità
+    7: .nan
+  VARIABLE:
+    0: Totale
+    1: meno di 9 anni
+    2: 9-14 anni
+    3: 15-24 anni
+    4: 25-49 anni
+    5: 50-64 anni
+    6: piu di 65 anni
+    7: geometry
+redditi:
+  DESCRIPTION:
+    0: .nan
+    1: .nan
+    2: .nan
+    3: .nan
+    4: .nan
+    5: .nan
+    6: .nan
+    7: .nan
+    8: .nan
+    9: .nan
+    10: .nan
+    11: .nan
+    12: .nan
+    13: .nan
+    14: .nan
+    15: .nan
+    16: .nan
+    17: .nan
+    18: .nan
+    19: .nan
+    20: .nan
+    21: .nan
+    22: .nan
+    23: .nan
+    24: .nan
+    25: .nan
+    26: .nan
+    27: .nan
+    28: .nan
+    29: .nan
+    30: .nan
+    31: .nan
+    32: .nan
+    33: .nan
+    34: .nan
+    35: .nan
+    36: .nan
+    37: .nan
+    38: .nan
+    39: .nan
+    40: .nan
+    41: .nan
+    42: .nan
+    43: POLYGON del comune
+  UNIT OF MEASURE:
+    0: unità
+    1: int
+    2: euro
+    3: int
+    4: euro
+    5: int
+    6: euro
+    7: int
+    8: euro
+    9: int
+    10: euro
+    11: int
+    12: euro
+    13: int
+    14: euro
+    15: int
+    16: euro
+    17: int
+    18: euro
+    19: int
+    20: euro
+    21: int
+    22: euro
+    23: int
+    24: euro
+    25: int
+    26: euro
+    27: int
+    28: euro
+    29: int
+    30: euro
+    31: int
+    32: euro
+    33: int
+    34: euro
+    35: int
+    36: euro
+    37: int
+    38: euro
+    39: euro
+    40: int
+    41: int
+    42: euro
+    43: .nan
+  VARIABLE:
+    0: Numero contribuenti
+    1: ' Reddito da fabbricati - Frequenza'
+    2: ' Reddito da fabbricati - Ammontare in euro'
+    3: ' Reddito da lavoro dipendente e assimilati - Frequenza'
+    4: ' Reddito da lavoro dipendente e assimilati - Ammontare in euro'
+    5: ' Reddito da pensione - Frequenza'
+    6: ' Reddito da pensione - Ammontare in euro'
+    7: ' Reddito di spettanza dellimprenditore in contabilita ordinaria - Frequenza'
+    8: ' Reddito di spettanza dellimprenditore in contabilita ordinaria - Ammontare
+      in euro'
+    9: ' Reddito di spettanza dellimprenditore in contabilita semplificata - Frequenza'
+    10: ' Reddito di spettanza dellimprenditore in contabilita semplificata - Ammontare
+      in euro'
+    11: ' Reddito da partecipazione - Frequenza'
+    12: ' Reddito da partecipazione - Ammontare in euro'
+    13: ' Reddito imponibile - Frequenza'
+    14: ' Reddito imponibile - Ammontare in euro'
+    15: ' Imposta netta - Frequenza'
+    16: ' Imposta netta - Ammontare in euro'
+    17: ' Reddito imponibile addizionale - Frequenza'
+    18: ' Reddito imponibile addizionale - Ammontare in euro'
+    19: ' Addizionale regionale dovuta - Frequenza'
+    20: ' Addizionale regionale dovuta - Ammontare in euro'
+    21: ' Addizionale comunale dovuta - Frequenza'
+    22: ' Addizionale comunale dovuta - Ammontare in euro'
+    23: ' Reddito complessivo minore o uguale a zero euro - Frequenza'
+    24: ' Reddito complessivo minore o uguale a zero euro - Ammontare in euro'
+    25: ' Reddito complessivo da 0 a 10000 euro - Frequenza'
+    26: ' Reddito complessivo da 0 a 10000 euro - Ammontare in euro'
+    27: ' Reddito complessivo da 10000 a 15000 euro - Frequenza'
+    28: ' Reddito complessivo da 10000 a 15000 euro - Ammontare in euro'
+    29: ' Reddito complessivo da 15000 a 26000 euro - Frequenza'
+    30: ' Reddito complessivo da 15000 a 26000 euro - Ammontare in euro'
+    31: ' Reddito complessivo da 26000 a 55000 euro - Frequenza'
+    32: ' Reddito complessivo da 26000 a 55000 euro - Ammontare in euro'
+    33: ' Reddito complessivo da 55000 a 75000 euro - Frequenza'
+    34: ' Reddito complessivo da 55000 a 75000 euro - Ammontare in euro'
+    35: ' Reddito complessivo da 75000 a 120000 euro - Frequenza'
+    36: ' Reddito complessivo da 75000 a 120000 euro - Ammontare in euro'
+    37: ' Reddito complessivo oltre 120000 euro - Frequenza'
+    38: ' Reddito complessivo oltre 120000 euro - Ammontare in euro'
+    39: ' Reddito da lavoro autonomo - Ammontare in euro'
+    40: ' Reddito da lavoro autonomo - Frequenza'
+    41: ' Bonus spettante - Frequenza'
+    42: ' Bonus spettante - Ammontare in euro'
+    43: ' geometry'
+strade:
+  CLASSES:
+    0: 1- Highways, 2- Primary roads, 3- Secondary roads, 4- Tertiary roads, 5- Local
+      roads
+    1: .nan
+    2: .nan
+  DESCRIPTION:
+    0: tipo di strada
+    1: lunghezza della strada
+    2: POLYGON della strada (LINESTRING buffered by 3 meters)
+  UNIT OF MEASURE:
+    0: classe numerica
+    1: .nan
+    2: .nan
+  VARIABLE:
+    0: GP_RTP
+    1: Shape_Leng
+    2: geometry
+vegetazione:
+  CLASSES:
+    0: '''Impianti per arboricoltura da legno'', ''Robinieti'', ''Arbusteti planiziali
+      collinari e montani'', ''Saliceti e pioppeti ripari'', ''Faggete'', ''Querceti
+      di roverella'', "Boscaglie pioniere e d''invasione", ''Querceti di rovere'',
+      ''Castagneti'', ''Orno-ostrieto'', ''Cerrete'', ''Rimboschimenti'', ''Pinete
+      di pino marittimo'', ''Pinete di pino silvestre'', ''Querco-carpineti'', ''Acero-tiglio-frassineti'',
+      ''Alneti planiziali e montani'', ''Arbusteti subalpini'', ''Peccete'', ''Lariceti
+      e cembrete'', ''Abetine'', ''Pinete di pino montano'', ''Filare doppio'', ''Filare
+      singolo'''
+    1: '''Impianti indifferenziati'', ''Pioppeti'', ''Impianti di conifere'', ''Impianti
+      di latifoglie di pregio'', ''Robinieto'', ''Arbusteto mesoxerofilo di Prunus
+      spinosa e Cornus sanguinea'', ''Pioppeto di pioppo bianco'', ''Faggeta eutrofica
+      appenninica'', ''Orno-querceto di roverella'', "Querceto mesoxerofilo di roverella
+      dei rilievi collinari interni e dell''Appennino", ''Arbusteto di Spartium junceum\n'',
+      "Boscaglie d''invasione", ''Querceto di rovere a Physospermum cornubiense dei
+      rilievi collinari interni'', "Castagneto neutrofilo dell''Appennino e dei rilievi
+      collinari interni", "Orno-ostrieto dell''Appennino calcareo-marnoso a Knautia
+      drymeia", "Castagneto acidofilo a Physospermum cornubiense dell''Appennino e
+      dei rilievi collinari interni", ''Orno-ostrieto dei rilievi collinari marnoso-arenacei'',
+      ''Cerreta mesoxerofila'', ''Rimboschimento del piano montano'', "Corileto d''invasione",
+      ''Querceto xero-acidofilo di roverella con Erica arborea'', ''Rimboschimento
+      dei piani planiziale e collinare'', "Querceto di rovere a Physospermum cornubiense
+      dei substrati silicatici dell''Appennino", ''Pineta di pino marittimo'', ''Arbusteto
+      appenninico ad Erica arborea\n'', ''Saliceto arbustivo ripario'', ''Pineta di
+      pino silvestre dei rilievi collinari interni'', "Querceto misto d''impluvio
+      dei rilievi collinari interni", ''Cerreta acidofila'', ''Arbusteto di Spartium
+      junceum'', ''Pioppeto di pioppo nero'', ''Ginepreto di Juniperus communis'',
+      ''Saliceto di salice bianco'', ''Faggeta appenninica a Physospermum cornubiense'',
+      ''Boscaglia rupestre pioniera'', ''Querco-carpineto della bassa pianura'', ''Cerreta
+      mista appenninica a Sesleria cylindrica'', "Acero-tiglio-frassineto d''invasione",
+      ''Alneto di ontano nero'', ''Castagneto da frutto'', "Querceto mesoxerofilo
+      di roverella dei rilievi collinari interni e dell''Appennino\n", ''Cerreta mesofila'',
+      "Pioppeto d''invasione a pioppo tremolo", ''Orno-ostrieto delle Alpi Liguri
+      e Marittime'', "Castagneto neutrofilo dell''Appennino e dei rilievi collinari
+      interni\n", "Querco-carpineto d''alta pianura a basse precipitazioni", ''Querco-carpineto
+      mesoxerofilo del Monferrato e/o Colline del Po'', ''Arbusteto montano di Buxus
+      sempervirens'', ''Betuleto montano'', "Querco-carpineto d''alta pianura ad elevate
+      precipitazioni", "Querceto misto d''impluvio dei rilievi collinari interni\n",
+      ''Castagneto acidofilo a Teucrium scorodonia delle Alpi'', ''Alneto di ontano
+      verde'', ''Querceto di rovere a Teucrium scorodonia'', ''Castagneto mesoneutrofilo
+      a Salvia glutinosa delle Alpi'', ''Acero-tiglio-frassineto di forra'', ''Betuleto
+      planiziale di brughiera'', ''Faggeta mesotrofica'', ''Pecceta montana mesalpica'',
+      ''Faggeta oligotrofica'', ''Alneto di ontano bianco'', ''Lariceto montano'',
+      ''Lariceto dei campi di massi'', ''Larici-cembreto su rodoreto-vaccinieto'',
+      ''Abetina oligotrofica mesalpica'', ''Querceto di rovere/roverella con orniello
+      ed Erica cinerea'', ''Querco-tiglieto'', ''Querceto xero-acidofilo di roverella
+      delle Alpi'', ''Pineta di brughiera su morene e terrazzi fluvio-glaciali'',
+      ''Faggeta mesoxerofila'', ''Lariceto pascolivo'', ''Faggeta eutrofica delle
+      Alpi'', ''Pineta mesalpica basifila di pino silvestre'', ''Querceto mesoxerofilo
+      di roverella delle Alpi'', ''Arbusteto montano xerofilo di Prunus sp.pl/Berberis
+      vulgaris'', ''Arbusteto rupestre di Amelanchier ovalis'', ''Pineta di pino uncinato
+      eretto'', ''Faggeta basifila pioniera'', ''Pineta mesalpica acidofila di pino
+      silvestre'', ''Faggeta altimontana a megaforbie'', ''Rimboschimento del piano
+      subalpino'', ''Lariceto mesoxerofilo subalpino'', ''Pineta endalpica mesoxerofila
+      di pino silvestre'', ''Abetina mesotrofica mesalpica'', ''Pineta di pino montano
+      prostrato'', ''Abetina eutrofica'', ''Abetina altimontana a megaforbie'', ''Querceto
+      xero-basifilo di roverella delle Alpi'', ''Pecceta montana endalpica'', ''Abetina
+      endalpica'', ''Alneto di ontano verde\n'', ''Lariceto di greto'', ''Lariceto
+      a megaforbie'', ''Cembreta xero-acidofila'', ''Querceto di rovere a Potentilla
+      alba'', ''Pineta endalpica acidofila di pino silvestre'', ''Pecceta subalpina'',
+      ''Pineta endalpica basifila di pino silvestre'', ''Pineta endalpica di greto
+      di pino silvestre'', ''Tilieto di tiglio a grandi foglie'', ''Saliceto paludoso
+      di Salix cinerea'', ''Larici-cembreto su rodoreto-vaccinieto\n'', ''Robinia
+      pseudoacacia'', ''Specie spontanee'', ''Specie esotiche o naturalizzate'', ''?'',
+      ''??'''
+    2: '''Aree per cui non si prevede intervento'', ''Adeguamento delle pratiche alpicolturali
+      e delle relative infrastrutture'', ''Evoluzione controllata (senza gestione
+      attiva)'', ''Gestione a ceduo composto'', ''Diradamento e conversione'', ''Ceduazione'',
+      ''Diradamento'', ''Mantenimento delle attuali pratiche colturali'', ''Evoluzione
+      naturale'', ''Taglio a buche, a strisce, a fessura'', ''Cure colturali'', ''Conversione
+      attiva'', ''Ricostituzione boschiva, taglio fitosanitario o rinfoltimento'',
+      ''Tagli successivi adattati'', ''Evoluzione controllata'', ''Evoluzione libera'',
+      ''Trasformazione'', ''Taglio a scelta colturale'', ''Formazione lineare'', ''Gestione
+      a governo misto'', ''Ceduazione a ceduo semplice'', ''Nessuna gestione attiva
+      nel periodo del PFA'', ''Pascolamento di erbivori domestici o sfalcio delle
+      praterie intercluse in ambiti forestali'', ''Taglio a scelta colturale per collettivi'',
+      ''Ceduazione a ceduo a sterzo'''
+    3: '"Aree per cui non si prevede priorita'' d''intervento", ''Differibile - tra
+      11 e 15 anni'', ''Nessuna'', ''Breve termine - entro 5 anni'', ''Medio termine
+      - tra 6 e 10 anni'', ''Primo periodo'', ''Nessun intervento'', ''Secondo periodo'',
+      ''Terzo periodo'''
+    4: '"Categorie di uso del suolo per cui non e'' prevista una destinazione", ''Naturalistica'',
+      ''Aree vocate alla pioppicoltura'', ''Produttiva e protettiva'', ''Protettiva'',
+      ''Conservazione del paesaggio delle praterie'', "Aree vocate all''arboricoltura
+      da legno", ''Produttiva'', ''Evoluzione libera senza specifica destinazione
+      (superfici forestali)'', ''Evoluzione libera senza specifica destinazione(aree
+      con valenza pastorale e prati stabili di pianura'', ''Fruizione'', ''Mantenimento
+      delle praterie di altitudine'', ''Filare'', ''Siepe arbustiva'', ''Filare con
+      arbusti o siepe arbustiva'''
+    5: '"Categorie di uso del suolo per cui non e'' descritto un assetto evolutivo",
+      ''Ceduo in conversione'', ''Bosco di neoformazione (invasione)'', ''Ceduo a
+      sterzo (ceduo disetaneo)'', ''Ceduo semplice con o senza matricine'', ''Fustaia'',
+      ''Ceduo'', ''Bosco senza gestione per condizionamenti stazionali'', ''Rimboschimento
+      / fustaia artificiale'', ''Ceduo composto (Fustaia sopra ceduo / ceduo sotto
+      fustaia)'', ''Altre condizioni'', ''Governo misto'''
+    6: .nan
+    7: .nan
+  DESCRIPTION:
+    0: categoria di vegetazione
+    1: tipo di vegetazione
+    2: intervento previsto per la vegetazione
+    3: priorità di intervento
+    4: destinazione della vegetazione
+    5: stato di gestione della vegetazione
+    6: estensione
+    7: POLYGON della vegetazione
+  UNIT OF MEASURE:
+    0: classe verbale
+    1: classe verbale
+    2: classe verbale
+    3: classe verbale
+    4: classe verbale
+    5: classe verbale
+    6: ettari (hm2)
+    7: .nan
+  VARIABLE:
+    0: CATEGORIA
+    1: TIPO
+    2: INTERVENTO
+    3: PRIORITA
+    4: DESTINAZ
+    5: ASSETTO
+    6: ESTENSIONE
+    7: geometry
