@@ -22,12 +22,12 @@ from PointDataLoader import *
 
 sample_dir = '/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/cache/samples/'
 
-# with open('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/cache/listdir_lists/listdir_samples.pkl', 'rb') as f:
-#     listdir_samples = pickle.load(f)
+with open('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/cache/listdir_lists/listdir_samples.pkl', 'rb') as f:
+    listdir_samples = pickle.load(f)
 
 is_beginning = True
 
-for sample in tqdm(os.listdir(sample_dir), desc='Loading data for each sample...'):
+for sample in tqdm(listdir_samples[81:90], desc='Loading data for each sample...'):
     
     final_data = pd.DataFrame()
 

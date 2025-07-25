@@ -22,5 +22,5 @@ from PointDataLoader import *
 with open('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/data_for_weather_kriging.pkl', 'rb') as f:
      loaded_dict = pickle.load(f)
 
-for year in range(2000, 2016):
-     daily_forecast(loaded_dict, year, [list(loaded_dict[year].keys())[0]])
+year = 2005
+daily_forecast(loaded_dict, year, list(loaded_dict[year].keys()))
