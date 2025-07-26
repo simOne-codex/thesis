@@ -40,6 +40,7 @@ for sample in tqdm(listdir_samples[:9], desc='Loading data for each sample...'):
                                stagione = sample.split("_")[1].split(".")[0],
                                 x = row.geometry.x,
                                 y = row.geometry.y,
+                                target = row['target'],
                                 crs = crs)
         data.load()
         table = data.get_table()

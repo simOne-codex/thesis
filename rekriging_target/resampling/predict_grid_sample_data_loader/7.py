@@ -22,7 +22,7 @@ from PointDataLoader import *
 
 random_state = 9911
 
-grid = gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/outputs/kriged_map/grid_100m_piedmont.geojson')
+grid = gpd.read_file('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/grid_1000m_piedmont.geojson')
 
 
 file_dir = '/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/kriged_maps/'
@@ -37,7 +37,8 @@ with open('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database
 
 random_state = 80
 
-for map in tqdm(listdir_kriged_maps[54:63], desc='Predicting map values...'):
+# from 56 since 54 and 56 have singular matrix as kriging model
+for map in tqdm(listdir_kriged_maps[56:63], desc='Predicting map values...'):
     with open(file_dir+f'{map}', 'rb') as f:
         model = pickle.load(f)
     values = model.predict(grid_array)
@@ -47,11 +48,11 @@ for map in tqdm(listdir_kriged_maps[54:63], desc='Predicting map values...'):
 
     aux = pd.concat([grid, value_series], axis=1)
     aux.loc[: ,'target'] = aux.loc[:, 'target'].round(1)
-
+    n_minor_class = aux.target.value_counts().iloc[-1]
     sample = gpd.GeoDataFrame(columns=['geometry', 'target'])
 
     for value, gdf in aux.groupby('target'):
-        foo = gdf.sample(50, random_state=random_state+int(value*25))
+        foo = gdf.sample(n_minor_class, random_state=random_state+int(value*25))
         sample = pd.concat([sample, foo], axis=0, ignore_index=True)
     sample.to_csv(f'/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/cache/samples/{map.split(".")[0]}.csv', index=False)
 

@@ -5,7 +5,7 @@ import utils
 reload(utils)
 from utils import *
 
-df = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input_resampled/table_data_input_with_target.csv', index_col=0)
+df = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/model_input/table_data_input.csv')
 
 def daylize(year, month, day):
     feb = 28
@@ -30,4 +30,4 @@ from ydata_profiling import ProfileReport
 
 profile = ProfileReport(data, title='EDA.html', explorative=True, interactions={"continuous": False}) #disable pairplots
 
-profile.to_file('/nfs/home/genovese/thesis-wildfire-genovese/resampling/outputs/EDA_ProfileReport.html')
+profile.to_file('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/resampling/outputs/EDA_ProfileReport.html')
