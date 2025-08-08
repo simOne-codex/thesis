@@ -68,10 +68,13 @@ class ConstantPredictor():
 
 
 
-def rk_train(X_train, target_col):
+def rk_train(X_train, target_col, dropna=True):
+
+    if dropna:
+        X_train.dropna(subset=[target_col], inplace=True, axis=0)
 
     # no data case
-    if X_train[target_col].isna().all(): 
+    if X_train[target_col].isna().all() or (X_train.shape[0] == 0): 
         return ConstantPredictor(None)
     
     # univariate case
@@ -80,9 +83,15 @@ def rk_train(X_train, target_col):
     
     # interpolable case
     else: 
-        RK = RegressionKriging(regression_model = GradientBoostingRegressor(), method='universal', variogram_model = 'spherical', verbose=False)
-        RK.fit(p = X_train[['height']], x = np.transpose(np.array([X_train.geometry.x, X_train.geometry.y])), y = X_train[target_col])
-        return RK
+        try:
+            RK = RegressionKriging(regression_model = GradientBoostingRegressor(), method='universal', variogram_model = 'spherical', verbose=False)
+            RK.fit(p = X_train[['height']], x = np.transpose(np.array([X_train.geometry.x, X_train.geometry.y])), y = X_train[target_col])
+            return RK
+    
+        except LinAlgError as e:
+            print(f"Error during Kriging model fitting: {e}")
+            # Return major constant value (since the model fits too imbalanced values, that's the reason of the LinAlgError)
+            return ConstantPredictor(X_train[target_col].value_counts().sort_values(ascending=False).index[0])
 
 
 
@@ -97,6 +106,21 @@ def daily_forecast(loaded_dict: dict, year: int, vars: list):
             X_train = gdf[gdf.day == day].to_crs(epsg=3857)
             model = rk_train(X_train, var)
             with open(f'/nfs/home/genovese/thesis-wildfire-genovese/database/daily_weather_maps/{year}_{day}_{var}.pkl', 'wb') as f:
+                pickle.dump(model, f)
+
+    return
+
+
+def monthly_forecast(loaded_dict: dict, year: int, vars: list):
+    centraline = loaded_dict[year]
+    
+    for var in tqdm(vars, desc=f'Running year: {year}'):
+        gdf =  centraline[var]
+        
+        for month in tqdm(list(gdf.month.unique()), desc=f'Running variable: {var}'):
+            X_train = gdf[gdf.month == month].to_crs(epsg=3857)
+            model = rk_train(X_train, var)
+            with open(f'/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/monthly_weather_maps/{year}_{month}_{var.replace(" ", "_").replace("/", "o")}.pkl', 'wb') as f:
                 pickle.dump(model, f)
 
     return

@@ -19,8 +19,8 @@ import PointDataLoader
 reload(PointDataLoader)
 from PointDataLoader import *
 
-with open('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/data_for_weather_kriging.pkl', 'rb') as f:
+with open('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/data_for_weather_kriging.pkl', 'rb') as f:
      loaded_dict = pickle.load(f)
 
-year = 2008
-daily_forecast(loaded_dict, year, list(loaded_dict[year].keys()))
+for year in range(2013, 2015):
+     monthly_forecast(loaded_dict, year, list(loaded_dict[year].keys()))

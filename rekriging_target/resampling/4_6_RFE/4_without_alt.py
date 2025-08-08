@@ -7,8 +7,8 @@ from sklearn.metrics import accuracy_score
 
 random_state = 92656
 
-X_train_val = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input_resampled/X_train_val.csv').set_index('fire_id')
-y_train_val = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input_resampled/y_train_val.csv').set_index('fire_id')
+X_train_val = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/model_input/X_train_val.csv')
+y_train_val = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/model_input/y_train_val.csv')
 
 classification_logistic = LogisticRegression(n_jobs=-1, random_state=random_state, max_iter=300)
 regression_linear = LinearRegression(n_jobs=-1)
@@ -41,6 +41,6 @@ for m, model in tqdm(enumerate([regression_linear, regression_forest, classifica
                                                 stratify=target)
     results_rfe, rfe_tracking = RecursiveFeatureSelection(X_train, X_val, y_train, y_val, model=model,
                                                             c_y_train = False, c_y_val = False)
-    results_rfe.to_csv(f'/nfs/home/genovese/thesis-wildfire-genovese/resampling/outputs/rfe_without_alt/{string2}_{string3}_rfe.csv')
-    rfe_tracking.to_csv(f'/nfs/home/genovese/thesis-wildfire-genovese/resampling/outputs/rfe_without_alt/{string2}_{string3}_rfe_tracking.csv')
+    results_rfe.to_csv(f'/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/resampling/outputs/rfe_without_alt/{string2}_{string3}_rfe.csv')
+    rfe_tracking.to_csv(f'/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/resampling/outputs/rfe_without_alt/{string2}_{string3}_rfe_tracking.csv')
 

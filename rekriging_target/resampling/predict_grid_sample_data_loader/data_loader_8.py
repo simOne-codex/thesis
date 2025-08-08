@@ -31,7 +31,7 @@ for sample in tqdm(listdir_samples[63:72], desc='Loading data for each sample...
     
     final_data = pd.DataFrame()
 
-    fires = pd.read_csv(sample_dir+f'{sample}')
+    fires = gpd.read_file(sample_dir+f'{sample}')
     crs = fires.crs
 
     for f in tqdm(fires.index, desc=f'Loading data for sample {sample}'):
@@ -46,12 +46,8 @@ for sample in tqdm(listdir_samples[63:72], desc='Loading data for each sample...
         table = data.get_table()
         final_data = pd.concat([final_data, table], ignore_index=True)
 
-    if is_beginning:
-        final_data.to_csv('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/model_input/table_data_input.csv', index=False)
-        is_beginning=False
-    else:
-        current = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/model_input/table_data_input.csv')
-        pd.concat([current, final_data], ignore_index=True
+    current = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/model_input/table_data_input.csv')
+    pd.concat([current, final_data], ignore_index=True
               ).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/model_input/table_data_input.csv', index=False)
 
 

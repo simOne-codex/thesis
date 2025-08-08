@@ -50,6 +50,6 @@ for map in tqdm(listdir_kriged_maps[9:18], desc='Predicting map values...'):
     sample = gpd.GeoDataFrame(columns=['geometry', 'target'])
 
     for value, gdf in aux.groupby('target'):
-        foo = gdf.sample(n_minor_class, random_state=random_state+int(value*25))
+        foo = gdf.sample(np.min([n_minor_class, 50]), random_state=random_state+int(value*25))
         sample = pd.concat([sample, foo], axis=0, ignore_index=True)
     sample.to_csv(f'/nfs/home/genovese/thesis-wildfire-genovese/rekriging_target/database/cache/samples/{map.split(".")[0]}.csv', index=False)
