@@ -16,7 +16,7 @@ regression_linear = LinearRegression(n_jobs=-1)
 regression_forest = RandomForestRegressor(n_jobs=-1, random_state=random_state, max_depth=int(sqrt(X_pca.shape[1])))
 classification_forest = RandomForestClassifier(n_jobs=-1, random_state=random_state, max_depth=int(sqrt(X_pca.shape[1])))
 
-for m, model in tqdm(enumerate([regression_linear, regression_forest, classification_logistic, classification_forest])):
+for m, model in tqdm(enumerate([regression_linear, regression_forest])):
 
     if m < 2:
         string2='regression'
