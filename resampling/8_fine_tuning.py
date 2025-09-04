@@ -65,6 +65,7 @@ pd.DataFrame(y_test, columns = target_non_rekriged.columns).to_csv('/nfs/home/ge
 random_states = [92656, 818, 19963]
 cv_rs=1633
 
+"""
 
 ## GRIDSEARCH
 X_train = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input_resampled/final_X_train_val.csv').set_index('fire_id', drop=True)
@@ -101,19 +102,36 @@ gs_r.fit(X_train, y_train['target_encoded'])
 
 pd.DataFrame(gs_r.cv_results_).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/resampling/outputs/grid_searches/model_fine_tuning.csv')
 ####
-
+"""
 
 ########################## CLASSIFIER 
 
 #### GRIDSEARCH
 
-regression_forest = RandomForestClassifier(n_jobs=-1)
-param_grid={'max_depth':[int(np.sqrt(X_train.shape[1])), 50, 100], 'min_samples_leaf': [1, 5, 10]}
+X_train = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input_resampled/final_X_train_val.csv').set_index('fire_id', drop=True)
+y_train = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/database/model_input_resampled/y_train_val.csv').set_index('fire_id', drop=True)
+
+transform = {0.0: 0,
+ 0.1: 1,
+ 0.2: 2,
+ 0.3: 3,
+ 0.4: 4,
+ 0.5: 5,
+ 0.6: 6,
+ 0.7: 7,
+ 0.8: 8,
+ 0.9: 9,
+ 1.0: 10}
+
+y_train['target_encoded'] = y_train.target.round(1).map(transform)
+
+classification_forest = RandomForestClassifier(n_jobs=-1)
+param_grid={'max_depth':[int(np.sqrt(X_train.shape[1])), 50, 100], 'min_samples_leaf': [1, 5, 10], 'random_state': random_states}
 
 cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=cv_rs)
 # cv=10
 
-gs_r = GridSearchCV(regression_forest,
+gs_r = GridSearchCV(classification_forest,
                   param_grid=param_grid,
                   cv=cv, 
                   verbose=5, 
