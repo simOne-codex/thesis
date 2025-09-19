@@ -10,8 +10,8 @@ random_states = [92656, 818, 19963]
 cv_rs=1633
 
 ## GRIDSEARCH
-X_train = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/database/sample_a/final_X_train_val.csv')
-y_train = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/database/sample_a/y_train_val.csv')
+X_train = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/database/sample_c/final_X_train_val.csv')
+y_train = pd.read_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/database/sample_c/y_train_val.csv')
 
 # transform = {0.0: 0,
 #  0.1: 1,
@@ -42,7 +42,7 @@ gs_r = GridSearchCV(regression_forest,
 
 gs_r.fit(X_train, y_train['target'])
 
-pd.DataFrame(gs_r.cv_results_).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/outputs/sample_a/model_fine_tuning.csv', index=False)
+pd.DataFrame(gs_r.cv_results_).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/outputs/sample_c/model_fine_tuning.csv', index=False)
 ####
 
 
@@ -65,5 +65,5 @@ gs_r = GridSearchCV(regression_forest,
 
 gs_r.fit(X_train, y_train['target'])
 
-pd.DataFrame(gs_r.cv_results_).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/outputs/sample_a/model_classification_fine_tuning.csv', index=False)
+pd.DataFrame(gs_r.cv_results_).to_csv('/nfs/home/genovese/thesis-wildfire-genovese/only_human_study/outputs/sample_c/model_classification_fine_tuning.csv', index=False)
 ####
