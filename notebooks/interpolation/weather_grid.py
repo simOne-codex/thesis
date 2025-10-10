@@ -41,4 +41,53 @@ points_gdf = gpd.GeoDataFrame(
 for_kriging = gpd.GeoDataFrame(target[['day_of_year', 'ignition_point', 'YYYY']], geometry='ignition_point'
                                ).rename(columns={'ignition_point': 'geometry'}).merge(points_gdf, on='geometry', how='inner')
 
+# got from https://twcc.fr/
+fill = {1: 1580,
+ 125: 569,
+ 131: 1049,
+ 146: 1447,
+ 165: 1345,
+ 217: 1530,
+ 225: 1339,
+ 227: 1361,
+ 230: 1389,
+ 258: 563,
+ 274: 614,
+ 351: 248,
+ 383: 642,
+ 394: 725,
+ 396: 1298,
+ 397: 1536,
+ 404: 766,
+ 438: 1093,
+ 440: 1034,
+ 443: 1356,
+ 448: 1053,
+ 458: 1494,
+ 460: 1298,
+ 461: 1029,
+ 468: 559,
+ 476: 1428,
+ 477: 1769,
+ 482: 1538,
+ 484: 1436,
+ 501: 406,
+ 504: 891,
+ 634: 344,
+ 635: 373,
+ 760: 428,
+ 772: 891,
+ 826: 1039,
+ 866: 533,
+ 996: 1068,
+ 1011: 568,
+ 1012: 568,
+ 1025: 812,
+ 1035: 585,
+ 1148: 742,
+ 1174: 1128,
+ 1206: 923}
+
+for_kriging['height'].fillna(fill, inplace=True)
+
 for_kriging.to_file('/nfs/home/genovese/thesis-wildfire-genovese/data/data_loader_for_kriging/kriging_weather_grid.geojson')
