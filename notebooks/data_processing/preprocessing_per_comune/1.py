@@ -1,5 +1,5 @@
 import sys 
-sys.path.append(rf"/nfs/home/genovese/thesis-wildfire-genovese/src")
+sys.path.append(rf"/nfs/home/genovese/thesis-wildfire-genovese/notebooks/")
 from importlib import reload
 import utils
 reload(utils)

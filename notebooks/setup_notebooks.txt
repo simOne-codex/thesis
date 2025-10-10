@@ -1,0 +1,54 @@
+TO SETUP THE NOTEBOOKS:
+
+import sys 
+sys.path.append(rf"/nfs/home/genovese/thesis-wildfire-genovese/src")
+from importlib import reload
+import utils
+reload(utils)
+from utils import *
+data_folder = "/nfs/home/genovese/thesis-wildfire-genovese/data/"
+
+
+TO COMMIT ONLINE THOUGH GIT BASH:
+
+cd C:/Users/simof/Documents/GitHub/thesis
+git init
+git add . 
+git commit -m "Comment to the commit"
+git push -u origin (optional name of the brach. main is the default one)
+
+
+TO RUN SLURM
+nano my_job.slurm
+
+Puoi lanciare un solo slurm alla volta
+inside the slurm terminal write (all SBATCH options are optional) :
+#!/bin/bash
+#SBATCH --gpus=1
+#SBATCH --ntasks=1
+#SBATCH --time=50:00
+#SBATCH --mem-per-cpu=30G
+#SBATCH --job-name=test_job
+#SBATCH --output=job_output.txt
+
+# Run your command
+python my_script.py
+
+
+Press Ctrl + O → Enter (to save)
+Press Ctrl + X (to exit)
+
+in the terminal write 
+sbatch my_job.slurm
+
+To monitor the job:
+squeue -u $USER
+
+
+TROUBLESHOOTING:
+If a command needs more cpu to run, add gigabites to mem-per-cpu, add gpus, add tasks
+
+
+TO EXPORT MULTIPLE LAYERS FROM QGIS
+Use a Geopackage file in "save as" and every time just Export a layer into the same file
+WARNING: when then you want to import the GeoPackage to python, you must specify the layer, otherwise it returns just the main one (the first one)
